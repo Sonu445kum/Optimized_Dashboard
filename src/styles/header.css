@@ -1,0 +1,113 @@
+/* Full-width sticky header */
+.header {
+  width: 100%;
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Flex container: left (logo+title+nav) and right (auth) */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+/* Logo + Title container */
+.header-left .logo {
+  display: flex;           /* horizontal alignment */
+  align-items: center;     /* vertically center logo and title */
+  gap: 10px;               /* space between logo and text */
+}
+
+.header-left .logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.header-left .logo img:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.header-left .logo h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+
+/* Navigation links inline next to title */
+.nav-links {
+  display: flex;
+  gap: 15px;
+  margin-left: 400px;
+}
+.homeLink{
+    margin-bottom: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav-links a:hover {
+  color: #ffdd57;
+  transform: translateY(-2px);
+}
+
+/* Right side: auth buttons + user */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  font-weight: 500;
+  margin-right: 10px;
+  /* animation: wave 1.5s infinite; */
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(15deg); }
+  40% { transform: rotate(-10deg); }
+}
+
+/* Buttons */
+.logout-btn, .signup-btn, .login-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.logout-btn { background-color: #e74c3c; color: white; }
+.logout-btn:hover { background-color: #c0392b; transform: translateY(-2px); }
+
+.signup-btn { background-color: #27ae60; color: white; }
+.signup-btn:hover { background-color: #1e8449; transform: translateY(-2px); }
+
+.login-btn { background-color: #2980b9; color: white; }
+.login-btn:hover { background-color: #1f618d; transform: translateY(-2px); }
+
+/* Responsive: stack on mobile */
+@media screen and (max-width: 768px) {
+  .nav-links { display: none; }
+  .header-left h1 { font-size: 1.4rem; }
+  .header-left .logo img { width: 40px; height: 40px; }
+}

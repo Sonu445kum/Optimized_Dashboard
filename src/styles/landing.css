@@ -1,0 +1,141 @@
+/* Container centered and full width */
+.landing-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f0fdfa, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Hero section with shadow and padding */
+.landing-hero {
+  max-width: 900px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.landing-hero:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* Hero heading */
+.landing-hero h1 {
+  font-size: 2.5rem;
+  color: #0f766e;
+  margin-bottom: 15px;
+}
+
+.landing-hero p {
+  font-size: 1.2rem;
+  color: #374151;
+  margin-bottom: 30px;
+}
+
+/* Image slider wrapper */
+.landing-slider {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.landing-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Buttons styling */
+.landing-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Specific buttons */
+.btn-getstarted {
+  background-color: #10b981; /* green */
+}
+
+.btn-getstarted:hover {
+  background-color: #059669;
+}
+
+.btn-login {
+  background-color: #3b82f6; /* blue */
+}
+
+.btn-login:hover {
+  background-color: #2563eb;
+}
+
+/* Info section */
+.landing-info {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #4b5563;
+}
+
+.landing-info h4 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.landing-info ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+.landing-info li {
+  margin-bottom: 5px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .landing-hero {
+    padding: 25px;
+  }
+  .landing-hero h1 {
+    font-size: 2rem;
+  }
+  .landing-hero p {
+    font-size: 1rem;
+  }
+  .landing-slider {
+    height: 250px;
+  }
+}

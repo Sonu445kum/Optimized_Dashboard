@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db; /* light gray border */
+  border-radius: 4px;
+  background-color: #f3f4f6; /* light gray background */
+  cursor: pointer;
+  color: #111827; /* dark text */
+}
+
+.page-btn:hover {
+  background-color: #e5e7eb; /* slightly darker gray on hover */
+}
+
+.page-btn:disabled {
+  background-color: #111827; /* dark for active */
+  color: #fff;
+  cursor: default;
+}
+
+.page-btn.active {
+  background-color: #111827; /* active dark button */
+  color: #fff;
+}
