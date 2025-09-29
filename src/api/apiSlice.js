@@ -13,7 +13,7 @@ export const apiSlice = createApi({
     getPosts: builder.query({
       query: () => "posts",
     }),
-    getTodos: builder.query({
+    getTodos: builder.query({ 
       query: () => "todos",
     }),
   }),
