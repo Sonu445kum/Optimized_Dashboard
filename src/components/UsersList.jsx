@@ -55,7 +55,7 @@
 
 // export default UsersList;
 
-// Add the the Normalizations logic 
+// Add the the Normalizations logic in the UsersLists.jsx Components 
 import React, { useMemo } from "react";
 import { useGetUsersQuery } from "../api/apiSlice";
 import "../styles/dashboard.css";

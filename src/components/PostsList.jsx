@@ -64,6 +64,78 @@
 
 // export default PostsList;
 
+// Add the Global Search Functionality for the Search Field
+// import React, { useState, useMemo, useCallback } from "react";
+// import { useGetPostsQuery } from "../api/apiSlice";
+// import SearchFilter from "./SearchFilter";
+// import Pagination from "../components/Paginations";
+// import "../styles/dashboard.css";
+
+// const PostsList = React.memo(() => {
+//   const { data: posts, isLoading, error } = useGetPostsQuery();
+//   const [search, setSearch] = useState("");
+//   const [page, setPage] = useState(1);
+//   const perPage = 8;
+
+//   //  Global search logic
+//   const filtered = useMemo(() => {
+//     if (!posts) return [];
+//     const s = search.trim().toLowerCase();
+//     if (!s) return posts;
+
+//     return posts.filter(post =>
+//       Object.values(post).some(value =>
+//         value
+//           .toString()                  // Convert all values to string
+//           .toLowerCase()               // Case-insensitive
+//           .includes(s)                 // Partial match
+//       )
+//     );
+//   }, [posts, search]);
+
+//   const total = filtered.length;
+//   const start = (page - 1) * perPage;
+//   const pageItems = useMemo(() => filtered.slice(start, start + perPage), [
+//     filtered,
+//     start,
+//   ]);
+
+//   const handleSearch = useCallback((v) => {
+//     setSearch(v);
+//     setPage(1); // Reset to first page when search changes
+//   }, []);
+
+//   const handlePage = useCallback((p) => setPage(p), []);
+
+//   if (isLoading) return <p>Loading posts...</p>;
+//   if (error) return <p>Error loading posts.</p>;
+
+//   return (
+//     <div className="posts-list">
+//       <SearchFilter value={search} onChange={handleSearch} />
+//       <ul className="posts-items">
+//         {pageItems.map((post) => (
+//           <li key={post.id} className="post-item">
+//             <h3 className="post-title">{post.title}</h3>
+//             <p className="post-body">{post.body}</p>
+//             <p className="post-user">User ID: {post.userId}</p>
+//           </li>
+//         ))}
+//       </ul>
+
+//       <Pagination
+//         total={total}
+//         perPage={perPage}
+//         current={page}
+//         onChange={handlePage}
+//       />
+//     </div>
+//   );
+// });
+
+// export default PostsList;
+
+// Add the Normalizations features in the Postslist.jsx Components
 import React, { useState, useMemo, useCallback } from "react";
 import { useGetPostsQuery } from "../api/apiSlice";
 import SearchFilter from "./SearchFilter";
@@ -71,33 +143,41 @@ import Pagination from "../components/Paginations";
 import "../styles/dashboard.css";
 
 const PostsList = React.memo(() => {
-  const { data: posts, isLoading, error } = useGetPostsQuery();
+  // Normalized data from RTK Query
+  const { data: normalizedPosts, isLoading, error } = useGetPostsQuery();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const perPage = 8;
 
-  //  Global search logic
-  const filtered = useMemo(() => {
-    if (!posts) return [];
-    const s = search.trim().toLowerCase();
-    if (!s) return posts;
+  // Convert normalized data to array
+  const postsArray = useMemo(() => {
+    if (!normalizedPosts) return [];
+    return normalizedPosts.ids.map((id) => normalizedPosts.entities[id]);
+  }, [normalizedPosts]);
 
-    return posts.filter(post =>
-      Object.values(post).some(value =>
-        value
-          .toString()                  // Convert all values to string
-          .toLowerCase()               // Case-insensitive
-          .includes(s)                 // Partial match
+  // Global search logic
+  const filtered = useMemo(() => {
+    if (!postsArray) return [];
+    const s = search.trim().toLowerCase();
+    if (!s) return postsArray;
+
+    return postsArray.filter((post) =>
+      Object.values(post).some(
+        (value) =>
+          value
+            .toString()
+            .toLowerCase()
+            .includes(s)
       )
     );
-  }, [posts, search]);
+  }, [postsArray, search]);
 
   const total = filtered.length;
   const start = (page - 1) * perPage;
-  const pageItems = useMemo(() => filtered.slice(start, start + perPage), [
-    filtered,
-    start,
-  ]);
+  const pageItems = useMemo(
+    () => filtered.slice(start, start + perPage),
+    [filtered, start]
+  );
 
   const handleSearch = useCallback((v) => {
     setSearch(v);
@@ -133,6 +213,7 @@ const PostsList = React.memo(() => {
 });
 
 export default PostsList;
+
 
 
 
